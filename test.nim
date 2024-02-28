@@ -22,4 +22,23 @@ doAssert r3 == "100"
 
 # oh yeah...
 
-echo "complete"
+
+# and now you may be wondering why?
+
+# Well with "normal" "good" math you can't do this:
+# Try using int's for this and you'll run into overflow
+# errors because ints are yucky and gross...
+# strings are yummy!!! :) :)
+
+var
+    fib1 = "0"
+    fib2 = "1"
+
+
+for x in countup(1, 500):
+    var temp = fib1
+    fib1 = addition(fib1, fib2)
+    fib2 = temp
+
+echo fib1
+echo fib1 == "139423224561697880139724382870407283950070256587697307264108962948325571622863290691557658876222521294125"

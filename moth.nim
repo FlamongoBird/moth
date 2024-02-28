@@ -21,6 +21,7 @@ proc joinToString(number: seq[int]): string =
 
 
 proc addition*(n1, n2: string): string =
+    #[ Int limits are actually silly ]#
     var
         carry_the = 0
         num1 = n1.makeSeq()
