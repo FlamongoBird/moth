@@ -25,9 +25,16 @@ proc addition*(n1, n2: string): string =
         num1 = n1.makeSeq()
         num2 = n2.makeSeq()
         output = newSeq[int]()
+
+    while num1.len != num2.len:
+        if num1.len > num2.len:
+            num2.insert(0, 0)
+        else:
+            num1.insert(0, 0)
         
     for index in countdown(num1.len-1, 0):
-        var number = num1[index] + num2[index] + carry_the
+        var
+            number = num1[index] + num2[index] + carry_the
         if number > 9:
             number -= 10
             carry_the = 1
