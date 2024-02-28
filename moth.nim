@@ -1,4 +1,5 @@
 import std/strutils
+import options
 
 
 #[
@@ -45,3 +46,47 @@ proc addition*(n1, n2: string): string =
         output.add(carry_the)
 
     output.seqReverse().joinToString()
+
+
+
+proc minus_equals_one*(number: seq[int], at: int): seq[int] =
+    #[ it's fine this is just internal it's not public so it's ok ]#
+    var
+        number = number # bear with me
+
+    if at > number.len:
+        number[^(at-1)] = 0
+        return number
+
+    if number[^at] == 0:
+        number[^at] = 9
+        return minus_equals_one(number, at+1)
+    
+    number[^at] -= 1
+
+    return number
+
+
+proc isNotZero(s: seq[int]): bool =
+    #[ Peak efficiency for this I swaer ]#
+    for i in s:
+        if i != 0:
+            return true
+    return false
+
+iterator myCustomIteratorIMade(number: string): bool =
+    #[ One must never ask why an iterator returns a boolean... ]#
+    #[ Also do not ask why this is an iterator ]#
+    var num = number.makeSeq()
+    while num.isNotZero:
+        num = num.minus_equals_one(1)
+        yield true
+
+
+proc multiplication*(num, times: string): string =
+    #[ Mental Focus: Oh it's focused ]#
+    var output = "0"
+    for x in myCustomIteratorIMade(times):
+        output = addition(output, num)
+
+    return output
